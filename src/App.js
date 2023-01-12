@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
+import Home from "./pages/home/Home";
+import About from "./pages/about/About";
+import Products from "./pages/product/Products";
+import Error from "./pages/error/Error";
+import SharedLayout from "./pages/SharedLayout";
+import SingleProduct from "./pages/product/SingleProduct";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Login from "./pages/login/Login"
+
+import "./App.css";
 
 function App() {
+  const [user, setUser] = useState(null);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="products" element={<Products />} />
+          <Route path="products/:productId" element={<SingleProduct />} />
+          <Route path="login" element={<Login setUser={setUser}></Login>} />
+          <Route path="dashboard" element={<Dashboard user={user}></Dashboard>} />
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
