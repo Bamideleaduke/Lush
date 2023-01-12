@@ -8,7 +8,8 @@ import SharedLayout from "./pages/SharedLayout";
 import SingleProduct from "./pages/product/SingleProduct";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login"
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "./pages/ProtectedRoute";
+import SharedProduct from "./pages/product/SharedProduct";
 
 import "./App.css";
 
@@ -20,8 +21,11 @@ function App() {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="products" element={<Products />} />
-          <Route path="products/:productId" element={<SingleProduct />} />
+      <Route path="products" element={<SharedProduct />} >
+          <Route index element={<Products />} />
+          <Route path=":productId" element={<SingleProduct />} />
+      </Route>
+          
           <Route path="login" element={<Login setUser={setUser}></Login>} />
           <Route path="dashboard" element={<ProtectedRoute user={user}>
             <Dashboard user={user}></Dashboard>

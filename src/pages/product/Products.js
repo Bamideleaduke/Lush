@@ -5,9 +5,9 @@ import products from "../../data";
 const Product = () => {
   return (
     <section>
-        <h2>Product Page</h2>
         <div className="products">
         {products.map((product)=>{
+          console.log(product.name)
           return <article key={product.id}>
             <h5>{product.name}</h5>
           <Link to={`/products/${product.id}`} >more info</Link>
