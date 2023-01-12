@@ -4,7 +4,8 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav className="navbar">
+   <header>
+     <nav className="navbar">
       <NavLink
         to="/"
         className={({isActive}) => (isActive ? "link active" : "link")}
@@ -31,6 +32,7 @@ const Navbar = () => {
       </NavLink>
      
     </nav>
+   </header>
   );
 };
 
